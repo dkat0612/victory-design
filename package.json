@@ -1,0 +1,23 @@
+{
+  "name": "victory-design",
+  "version": "1.0.0",
+  "description": "[Kohana](http://kohanaframework.org/) is an elegant, open source, and object oriented HMVC framework built using PHP5, by a team of volunteers. It aims to be swift, secure, and small.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc -w",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://alexey_kovalev_:Popilota01@bitbucket.org/atishin93/victory-design.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/atishin93/victory-design#readme",
+  "devDependencies": {
+    "typescript": "2.0.0"
+  },
+  "dependencies": {
+  }
+}

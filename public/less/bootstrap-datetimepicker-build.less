@@ -1,0 +1,31 @@
+//out: ../css/bootstrap.datetimepicker.min.css, compress: true
+// Import bootstrap variables including default color palette and fonts
+@import "bootstrap/variables.less";
+
+// Import datepicker component
+@import "datetimepicker/_bootstrap-datetimepicker.less";
+@import "variables.less";
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+.bootstrap-datetimepicker-widget {
+    font-family: @mainFont;
+    font-size: 18px;
+}
+
+td.active {
+    background: @lightBlue;
+}
+
+th.picker-switch {
+    text-transform: capitalize;
+}

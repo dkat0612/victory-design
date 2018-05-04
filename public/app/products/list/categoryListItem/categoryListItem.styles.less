@@ -1,0 +1,34 @@
+﻿vc-category-list-item {
+    display: flex;
+    flex-direction: column;
+
+    & vc-category-list-item {
+        background: #cacaca;
+
+        & vc-category-list-item {
+            background: #696969;
+            color: #fff;
+        }
+    }
+
+    .category {
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        padding: 5px;
+        border: 1px solid #d1d1d1;
+        cursor: pointer;
+
+        &.active {
+            background: #3ea5dd;
+            color: #fff;
+        }
+
+    }
+
+    .sub-categories {
+        .category {
+            padding-left: 30px;
+        }
+    }
+}

@@ -1,0 +1,76 @@
+<div class="total-price">
+    <b>Стоимость товара:</b> {{$ctrl.price}} тг
+</div>
+<div class="form">
+    <div class="form-label town-input">
+        <label class="labeled-input-label">
+            Укажите в это поле: <span>Город -> </span><span>Самовывоз доступен только для города Алматы</span>
+        </label>
+        <input type="text" ы
+               ng-model="$ctrl.model.town"
+               readonly
+               ng-click="$ctrl.selectTown()"
+               ng-change="$ctrl.errors.tonw = false"
+               ng-class="{'has-error': $ctrl.errors.town}">
+        <div class="select-town-overlay" ng-show="$ctrl.selectingTown" ng-click="$ctrl.closeSelection()"></div>
+        <ul class="town-select" ng-show="$ctrl.selectingTown">
+            <li class="search-input">
+                <i class="fa fa-search fa-fw"></i>
+                <input type="text" value="" ng-model="$ctrl.destinationTown" focus-me="$ctrl.focusTownInput" ng-change="$ctrl.getDestinationTown()" placeholder="Введите город в который нужно сделать доставку">
+                <i class="fa fa-times fa-fw" ng-click="$ctrl.closeSelection()"></i>
+            </li>
+            <li ng-show="($ctrl.destinationRegions == 0) && $ctrl.destinationTown.length > 3" class="search-input">
+                <span>Ничего не найдено, проверте правильность введенных данных</span>
+            </li>
+            <li ng-repeat="item in $ctrl.destinationRegions" ng-click="$ctrl.selectTown(item)">
+                <span>{{item.title}}, {{item.cached_path}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="form-label" ng-show="$ctrl.selectedTown.id == 4">
+        <label class="labeled-input-label">Способ доставки</label>
+        <div class="checkboxes">
+            <div class="fa-radio" ng-click="$ctrl.chooseDelivery('self')">
+                <i class="fa fa-fw fa-dot-circle-o" ng-class="{'fa-circle-thin': $ctrl.model.deliveryType != 'self', 'fa-dot-circle-o': $ctrl.model.deliveryType== 'self'}"></i>
+                Самовывоз
+                <!--<i class="fa fa-fw fa-question-circle-o" style="color: #0094ff" ng-show="$ctrl.selectedTown.id == 4" ng-mouseenter="$ctrl.infoes.takeout = true" ng-mouseleave="$ctrl.infoes.takeout = false"></i>-->
+            </div>
+            <div class="fa-radio" ng-click="$ctrl.chooseDelivery('adress')">
+                <i class="fa fa-fw fa-circle-thin" ng-class="{'fa-circle-thin': $ctrl.model.deliveryType != 'adress', 'fa-dot-circle-o': $ctrl.model.deliveryType== 'adress'}"></i>
+                Доставка
+                <!--<i class="fa fa-fw fa-question-circle-o" style="color: #0094ff" ng-show="$ctrl.selectedTown.id == 4" ng-mouseenter="$ctrl.infoes.delivery = true" ng-mouseleave="$ctrl.infoes.delivery = false"></i>-->
+            </div>
+        </div>
+    </div>
+    <div class="form-label" ng-show="$ctrl.model.deliveryType == 'self'">
+        Адрес: г. Алматы, ул. Багратиона, 4
+    </div>
+    <div class="form-label" ng-show="$ctrl.model.deliveryType == 'adress'">
+        <b>Квадрат доставки:</b>
+        Аль-Фараби - Саина - Северное кольцо - Бекмаханова - Майлина - Рыскулова - Восточная Объездная Дорога<br>
+        <b>Заказ на сумму более 100 000 тенге</b> - перевозка не требует оплаты.<br>
+        <b>При покупке стоимостью менее 100 000 тенге</b> - 1000 тенге доставка.<br>
+        Товар будет доставлен к Вашему подъезду!<br>
+        Водитель машину <b>не покидает</b>!<br>
+        Стоимость и сроки доставки за пределами квадрата, оговариваются с менеджерами.<br>
+        Мы не можем гарантировать доставку товара день в день и не можем гарантировать доставку в труднодоступные места. Мы оставляем за собой права отказать в доставке без объяснения причины, но уведомив клиента. После оформления заказа, Вам обязательно позвонят в рабочее время для согласования доставки. <br>
+    </div>
+    
+    <div class="form-label" ng-show="$ctrl.selectedTown.id != 4 && $ctrl.selectedTown">
+        <label class="labeled-input-label">
+            Укажите в это поле: <span>ИИН/БИН</span>
+        </label>
+        <input type="text"
+               ng-model="$ctrl.model.iin"
+               ng-focus="$ctrl.infoes.iin = true"
+               ng-blur="$ctrl.infoes.iin = false"
+               masked-input="999999999999"
+               mi-placeholder="XXXXXXXXXXXX"
+               ng-change="$ctrl.errors.iin = false"
+               ng-class="{'has-error': $ctrl.errors.iin}">
+        <div class="form-info" ng-show="$ctrl.infoes.iin">
+            Для отправки товара курьерской службой, нам необходимо получить от Вас ИИН/БИН.<br>
+        </div>
+    </div>
+    
+</div>

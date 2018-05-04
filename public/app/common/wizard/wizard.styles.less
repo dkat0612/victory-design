@@ -1,0 +1,48 @@
+vc-wizard {
+
+    width: 800px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .wizard {
+        align-self: stretch;
+        display: flex;
+        justify-content: space-between;
+
+        .wizard-items {
+            flex-grow: 1;
+            padding: 0 20px;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+
+            .item-indicator {
+                display: block;
+                width: 20px;
+                height: 20px;
+                border: 1px solid #555;
+                border-radius: 50%;
+                margin: 10px 10px;
+
+                &.active {
+                    background: #555;
+                    width: 10px;
+                    height: 10px;
+                    margin: 20px 10px;
+                }
+            }
+        }
+    }
+    .wizard-buttons {
+        button {
+            width: 200px;
+        }
+    }
+}

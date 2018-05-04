@@ -1,0 +1,80 @@
+﻿<div class="form-label">
+    <label class="labeled-input-label">
+        Укажите в это поле: <span>ФИО</span>
+    </label>
+    <input type="text"
+           ng-model="$ctrl.model.name"
+           ng-focus="$ctrl.infoes.name = true"
+           ng-blur="$ctrl.infoes.name = false"
+           ng-change="$ctrl.errors.name = false"
+           ng-class="{'has-error': $ctrl.errors.name}">
+    <div class="form-info ng-hide" ng-show="$ctrl.infoes.name">
+        Мы обратимся к Вам по Имени, указанному в данном поле.<br>
+    </div>
+</div>
+
+<div class="form-label">
+    <label class="labeled-input-label">Укажите в это поле: <span>Телефон</span></label>
+    <input type="text"
+           id="customer-phone"
+           ng-model="$ctrl.model.phone"
+           masked-input="+7(999)999-99-99"
+           mi-placeholder="+7-XXX-XXX-XX-XX"
+           ng-focus="$ctrl.infoes.phone = true"
+           ng-blur="$ctrl.infoes.phone = false"
+           ng-change="$ctrl.errors.phone = false"
+           ng-class="{'has-error': $ctrl.errors.phone}">
+    <div class="form-info ng-hide" ng-show="$ctrl.infoes.phone">
+        Мы позвоним Вам для подтверждения заказа.<br>
+        Заполняя Телефон: Вы сокращаете время на обработку заказа.
+    </div>
+</div>
+<div class="form-label" ng-if="$ctrl.selectedDelivery.id == 2 || $ctrl.selectedDelivery.id == 3">
+    <label class="labeled-input-label">Укажите в это поле: <span>Адрес</span></label>
+    <input type="text"
+           ng-focus="$ctrl.infoes.adress = true"
+           ng-blur="$ctrl.infoes.adress = false"
+           ng-model="$ctrl.model.adress"
+           ng-change="$ctrl.errors.adress = false"
+           ng-class="{'has-error': $ctrl.errors.adress}">
+    <div class="form-info" ng-if="$ctrl.selectedTown.id != 4" ng-show="$ctrl.infoes.adress">
+        Укажите в это поле Адрес согласно карте 2Gis, чтобы курьерская служба, доставила товар к Вам домой и в удобное для Вас время.
+    </div>
+</div>
+
+<div class="form-label" ng-if="$ctrl.selectedPerson.id == 1">
+    <label class="labeled-input-label">Укажите в это поле: <span>Юр.Наименование</span></label>
+    <input type="text"
+           ng-focus="$ctrl.infoes.reqisits = true"
+           ng-blur="$ctrl.infoes.reqisits = false"
+           ng-model="$ctrl.model.reqisits"
+           ng-change="$ctrl.errors.reqisits = false"
+           ng-class="{'has-error': $ctrl.errors.reqisits}">
+</div>
+<div class="form-label" ng-if="$ctrl.selectedPerson.id == 1">
+    <label class="labeled-input-label">Укажите в это поле: <span>Юр.Адрес</span></label>
+    <input type="text"
+           ng-focus="$ctrl.infoes.reqisits_1 = true"
+           ng-blur="$ctrl.infoes.reqisits_1 = false"
+           ng-model="$ctrl.model.reqisits_1"
+           ng-change="$ctrl.errors.reqisits_1 = false"
+           ng-class="{'has-error': $ctrl.errors.reqisits_1}">
+</div>
+<div class="form-label" ng-if="$ctrl.selectedPerson.id == 1">
+    <label class="labeled-input-label">Укажите в это поле: <span>Банк</span></label>
+    <input type="text"
+           ng-focus="$ctrl.infoes.reqisits_2 = true"
+           ng-blur="$ctrl.infoes.reqisits_2 = false"
+           ng-model="$ctrl.model.reqisits_2"
+           ng-change="$ctrl.errors.reqisits_2 = false"
+           ng-class="{'has-error': $ctrl.errors.reqisits_2}">
+</div>
+<div class="form-label" ng-if="$ctrl.selectedPerson.id == 1">
+    <label class="labeled-input-label">Укажите в это поле: <span>Расч.Счёт</span></label>
+    <input type="text"
+           ng-focus="$ctrl.infoes.reqisits_3 = true"
+           ng-blur="$ctrl.infoes.reqisits_3 = false"
+           ng-model="$ctrl.model.reqisits_3"
+           ng-change="$ctrl.errors.reqisits_3 = false"
+           ng-class="{'has-error': $ctrl.errors.reqisits_3}">
+</div>

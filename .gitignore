@@ -1,0 +1,14 @@
+application/config/database.php
+application/logs/
+public/img/products/
+uploads/
+public/files/
+/public/files/
+application/constants.php
+/.vs/Victory/v14/.suo
+/.vs/config/applicationhost.config
+*.user
+/DesignVictory.com.phpproj
+/google0946dc2dbea9e9e2.html
+*.suo
+/sitemap.xml

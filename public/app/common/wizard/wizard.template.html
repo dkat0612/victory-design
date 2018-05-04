@@ -1,0 +1,15 @@
+﻿<div class="wizard">
+    <div class="wizard-items ng-transclude">
+
+    </div>
+    <div class="controls">
+        <div class="item-indicator" ng-repeat="item in $ctrl.items" ng-class="{active: item.active}"></div>
+    </div>
+</div>
+<div class="wizard-buttons" ng-show="$ctrl.showButtons">
+    <button class="btn button-danger" ng-click="$ctrl.prev()" ng-disabled="$ctrl.activeItem.first || $ctrl.disabled">Назад</button>
+    <button class="btn button-primary" ng-click="$ctrl.next()" ng-show="!$ctrl.activeItem.last" ng-disabled="$ctrl.disabled">Далее</button>
+    <button class="btn button-success" ng-click="$ctrl.finish()" ng-show="$ctrl.activeItem.last" ng-disabled="$ctrl.disabled">{{$ctrl.finishText}}</button>
+</div>
+
+

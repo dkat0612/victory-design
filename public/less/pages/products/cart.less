@@ -1,0 +1,157 @@
+//out: ../../../css/pages/products/cart.min.css, compress: true
+
+@import "../../variables.less";
+
+.preOrderInfo {
+    position: relative;
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    .info {
+        display: inline-block;
+        vertical-align: top;
+    }
+}
+
+.product {
+    position: relative;
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+
+    .image {
+        display: inline-block;
+        vertical-align: top;
+        width: 150px;
+        height: 150px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+        margin-right: 30px;
+
+        img {
+            width: 100%;
+            max-height: 100%;
+        }
+    }
+
+    .info {
+        display: inline-block;
+        vertical-align: top;
+
+        h4 {
+            font-size: 25px;
+            margin: 0px;
+            margin-bottom: 10px;
+            span {
+                display: block;
+            }
+            span.amount-status {
+            color: #c13030;
+            }
+
+            span.amount-status.exist {
+            color: @greenActive;
+            }
+        }
+
+        label.special-input {
+            display: inline-block;
+            vertical-align: top;
+            width: 100px;
+            margin-right: 30px;
+            input {
+                padding-top: 10px;
+            }
+        }
+
+        .fa {
+            font-size: 30px;
+            margin-right: 30px;
+        }
+
+        span.product-price {
+            font-size: 40px;
+            margin-right: 30px;
+
+            span {
+                font-size: 40px;
+            }
+
+        }
+
+        button {
+            display: block;
+            .fa {
+                font-size: 16px;
+                margin: 0px;
+            }
+        }
+
+    }
+}
+
+.order {
+    text-align: center;
+    margin: auto;
+    width: 60%;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    position: relative;
+    min-height: 300px;
+
+    .preloader {
+        font-size: 50px;
+        color: #909090;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+
+    .customer-info {
+        position: absolute;
+        top: 10px;
+
+        .price {
+        font-size: 35px;
+        span {
+            font-size: 35px;
+            font-weight: bold;
+        }
+    }
+    }
+
+    .order-info {
+        font-size: 20px;
+        position: absolute;
+        top: 10px;
+        height: 500px;
+        .price {
+        font-size: 35px;
+        .price_amount {
+            font-size: 35px;
+            font-weight: bold;
+            }
+        }
+
+        span {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        div.help-text {
+            font-size: 18px;
+            color: @red;
+            font-family: Roboto;
+        }
+    }
+
+    .fadeOut.animated {
+        z-index: 300;
+    }
+
+    *.fadeIn.animated {
+        z-index: 400;
+    }
+
+}

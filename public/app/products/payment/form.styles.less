@@ -1,0 +1,312 @@
+﻿vc-payment-form, vc-payment-result {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    justify-content: center;
+
+    .form {
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, .5);
+        width: 700px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        position: relative;
+
+        .actions {
+            span {
+                font-weight: bold;
+                font-size: 30px;
+            }
+        }
+
+        .pricing-tables {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+
+            .pricing-table {
+                border: 1px solid #999;
+                width: 280px;
+                padding: 20px;
+
+                .title {
+                    text-align: center;
+                    font-size: 30px;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+
+                .price {
+                    text-align: center;
+                    font-size: 35px;
+
+                    &:after {
+                        content: 'тг';
+                    }
+                }
+
+                .time {
+                    text-align: center;
+
+                    h4 {
+                        font-size: 14px;
+                    }
+                }
+
+                .button {
+                    text-align: center;
+                    margin-top: 20px;
+                }
+
+                &.selected {
+                    box-shadow: 0 0 8px 3px rgb(83, 232, 89);
+                }
+            }
+        }
+
+        .total {
+            font-size: 30px;
+
+            b {
+                font-size: 30px;
+            }
+        }
+
+        .form-label {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            align-items: flex-start;
+
+            &.horizontal {
+                flex-direction: row;
+            }
+
+            label:after {
+                content: ':';
+            }
+
+            label + input {
+                background: transparent;
+                border: none;
+                outline: none;
+                //border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+                border-bottom: 0;
+                padding: 10px;
+                align-self: stretch;
+                margin: 10px;
+
+                &.has-error {
+                    box-shadow: 0 0 5px 2px rgba(255, 0, 0, 0.8);
+                }
+
+                &:focus {
+                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+                    border-bottom: 0;
+                    padding: 10px;
+                }
+            }
+        }
+
+        .town-input {
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+            position: relative;
+            max-width: 100%;
+            margin: 20px 0;
+
+            .placeholder {
+                display: flex;
+                justify-content: space-between;
+                max-width: 100%;
+                align-items: center;
+
+                span {
+                    display: block;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin-right: 10px;
+                }
+            }
+
+            ul.town-select {
+                width: 100%;
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                padding: 0;
+                margin: 0;
+                top: 100%;
+                list-style: none;
+                background: #fff;
+                z-index: 1;
+                box-shadow: 0 0 4px 1000px rgba(0,0,0,0.2);
+
+                li {
+                    padding: 20px;
+                    display: flex;
+                    max-width: 100%;
+                    border: 1px solid #ccc;
+                    border-top: 1px solid transparent;
+                    cursor: pointer;
+
+                    &.search-input {
+                        align-items: center;
+                        border-top: 1px solid #ccc;
+                        cursor: auto;
+
+                        span {
+                            white-space: normal;
+                        }
+
+                        input {
+                            flex-grow: 1;
+                            display: block;
+                            background: transparent;
+                            border: none;
+                            outline: none;
+                            margin: 0 10px;
+                        }
+
+                        i.fa-times {
+                            cursor: pointer;
+                        }
+                    }
+
+                    &:hover {
+                        background: #ddd;
+
+                        &.search-input {
+                            background: #fff;
+                        }
+                    }
+
+                    span {
+                        display: block;
+                        max-width: 100%;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+        }
+
+        .delivery-type {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            align-self: stretch;
+            transition: none;
+
+            .delivery {
+                border: 4px dashed #ccc;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                color: #ccc;
+                width: 45%;
+                transition: none;
+                margin-bottom: 20px;
+
+                &.active {
+                    border: 4px solid transparent;
+                    box-shadow: 0 0 6px 3px rgba(0,0,0,.5);
+                    color: #333;
+                }
+
+                h4 {
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+
+                span.price {
+                    text-align: center;
+                    font-size: 18px;
+                    font-weight: bold;
+
+                    &:after {
+                        content: ' тг';
+                    }
+                }
+
+
+                small {
+                    font-size: 10px;
+
+                    b {
+                        font-size: 10px;
+                        transition: none;
+
+                        &:after {
+                            content: ' тг';
+                        }
+                    }
+                }
+
+                span.dates {
+                    font-size: 10px;
+
+                    b {
+                        transition: none;
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .form-info {
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        font-size: 11px;
+        width: 200px;
+        max-width: 200px;
+        padding: 5px;
+        position: absolute;
+        top: 40px;
+        left: 100%;
+        /*top: 100%;*/
+        /*left: 0;*/
+    }
+
+    .order-price {
+        display: block;
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .order-table {
+        width: 100%;
+
+        thead {
+            border-bottom: 1px solid #555;
+
+            th {
+                text-align: center;
+                font-weight: bold;
+            }
+        }
+
+        td {
+            padding: 10px 0;
+        }
+
+            td:first-child {
+                width: 100px;
+                text-align: center;
+            }
+
+            td:last-child {
+                text-align: center;
+                width: 100px;
+            }
+    }
+}

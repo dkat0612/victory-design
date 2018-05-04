@@ -1,0 +1,7 @@
+﻿<div class="category" ng-click="$ctrl.navigate()" ng-class="{active: $ctrl.isActive()}">
+    <span>{{$ctrl.category.title}}</span>
+    <i class="fa fa-fw" ng-class="{'fa-caret-down': !$ctrl.isOpened(), 'fa-caret-up': $ctrl.isOpened()}" ng-show="$ctrl.category.subcategories.length"></i>
+</div>
+<div class="sub-categories" ng-show="$ctrl.category.subcategories.length && $ctrl.isOpened()">
+    <vc-category-list-item ng-repeat="category in $ctrl.category.subcategories" category="category"></vc-category-list-item>
+</div>

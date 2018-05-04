@@ -1,0 +1,89 @@
+<div class="product" ng-repeat="product in $ctrl.products track by $index">
+    <div class="controls">
+        <button class="btn button-primary" ng-click="$ctrl.moveProduct($index, 'up')" ng-hide="$index == 0">
+            <i class="fa fa-long-arrow-up fa-fw"></i>
+        </button>
+        <button class="btn button-primary" ng-click="$ctrl.moveProduct($index, 'down')" ng-hide="$index == $ctrl.products.length - 1">
+            <i class="fa fa-long-arrow-down fa-fw"></i>
+        </button>
+    </div>
+    <div class="photo" ng-if="product.status != 3 && product.status != 2">
+        <a ui-sref="products.show({id: product.id})">
+            <img ng-src="{{'http://victory.kz/public/img/products/' + product.id + '.jpg'}}" alt="" />
+        </a>
+    </div>
+    <div class="content" ng-if="product.status != 3 && product.status != 2">
+        <div class="title">
+            <h4>
+                <a ui-sref="products.show({id: product.id})">{{product.name}}</a>
+            </h4>
+        </div>
+        <div class="info">
+            <span>Код товара: <b>{{product.id}}</b></span>
+        </div>
+        <div class="amount-status {{$ctrl.getStatus(product).css}}">
+            {{$ctrl.getStatus(product).text}}
+        </div>
+        <div class="amount">
+            <div class="number-input">
+                <button class="btn button-danger" ng-click="$ctrl.addAmount($index, -1)">
+                    <i class="fa fa-minus fa-fw"></i>
+                </button>
+                <input type="text" value="" ng-model="$ctrl.cart[$index].amount" ng-change="$ctrl.amountChanged($index)" readonly/>
+                <button class="btn button-success"  ng-click="$ctrl.addAmount($index, +1)">
+                    <i class="fa fa-plus fa-fw"></i>
+                </button>
+            </div>
+            <i class="fa fa-times fa-fw"></i>
+            <span class="price">{{product.price}} тг</span>
+            <i class="fa fa-long-arrow-right fa-fw"></i>
+            <span class="total">{{$ctrl.cart[$index].amount * product.price}} тг</span>
+        </div>
+        <div class="actions">
+            <button class="btn button-danger" ng-click="$ctrl.removeFromCart(product)">Удалить</button>
+            <!--<button class="btn button-primary" ng-click="$ctrl.foundCheaper()">Нашли дешевле?</button>-->
+        </div>
+    </div>
+    <div class="removed-product" ng-if="product.status == 3 || product.status == 2">
+        <h4>Товар отсутсвует</h4>
+        <a ui-sref="products.show({id: product.id})">{{product.name}}</a><br>
+        Этот товар не найден в базе 1С<br>
+        Замените его, Корзина не будет отправлена в обработку с таким товаром.<br>
+        Товар устарел, снят c продаж или мы его не ожидаем в ближайшее время.<br>
+        Пожалуйста не продолжайте заказ с таким товаром, замените или удалите его. <br>
+        Такой заказ не будут отправлен в 1С на обработку, Вам будет выдана ошибка при оформлении. <br>
+        <button class="btn button-danger" ng-click="$ctrl.removeFromCart(product)">Удалить из корзины</button>
+    </div>
+</div>
+<div class="order-info">
+    <div class="form" ng-if="!$ctrl.bought">
+        <div class="total">
+            Итого: <b>{{$ctrl.getTotal()}} тг</b>
+        </div>
+        <div class="form-group">
+            Ознакомьтесь с условиями <a href="/static/warranty" target="_blank">Гарантии</a>, перед оформлением заказа.
+        </div>
+        <div class="form-group">
+            <b>Внимание!</b><br>
+            <ul>
+                <li>Весь товар, отправляющийся в другие города будет протестирован на работоспособность перед отправкой!</li>
+                <li>При запросе не тестировать оборудование, заводской брак будет являться гарантийным случаем.</li>
+            </ul>
+        </div>
+        <div class="form-group">
+            Оформи заказ через сайт! <br>
+            <b>Главные преимущества:</b>
+            <ul>
+                <li>Товар резервируется под Вас</li>
+                <li>Мы вышлем Вам данные о сделанном заказе на указнный Вами E-mail</li>
+                <li>Цены на сайте актуальны. Мы продадим товар по цене, указнной на сайте</li>
+                <li>Мы Вам позвоним для подтверждения заказа</li>
+            </ul>
+        </div>
+        <div class="actions">
+            <a class="btn button-success" ui-sref="products.order"><i class="fa fa-money"></i>Оформить заказ</a>
+            <button class="btn button-warning" ng-click="$ctrl.getLink()"><i class="fa fa-save"></i>Получить ссылку на корзину</button>
+        </div>
+    </div>
+</div>
+

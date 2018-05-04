@@ -1,0 +1,22 @@
+
+<div class="order-info">
+    <vc-wizard on-finish="$ctrl.finished()" finish-text="Оформить" show-buttons="!$ctrl.bought" link="$ctrl.wizard" disabled="$ctrl.buying">
+        <div class="total-price">
+            <b>Стоимость товара:</b> {{$ctrl.price}} тг
+        </div>
+        <vc-wizard-item first="true" name='first' next="'second'" check="$ctrl.checkFirst()">
+            <div ng-include="'/public/app/products/order/templates/first-page-template.html'"></div>
+        </vc-wizard-item>
+        <vc-wizard-item name='second' next="$ctrl.getThirdTab()" prev="'first'" check="$ctrl.checkSecond()">
+            <div ng-include="'/public/app/products/order/templates/second-template.html'"></div>
+        </vc-wizard-item>
+        <vc-wizard-item name='third' next="'payment'" prev="'second'" check="$ctrl.checkThird()">
+            <div class="form">
+                <div ng-include="'/public/app/products/order/templates/info-template.html'" style="width:100%;"></div>
+            </div>
+        </vc-wizard-item>
+        <vc-wizard-item name='payment' prev="$ctrl.getThirdPrevTab()" last="true" check="$ctrl.checkPayment()">
+            <div ng-include="'/public/app/products/order/templates/payment-template.html'"></div>
+        </vc-wizard-item>
+    </vc-wizard>
+</div>

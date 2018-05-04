@@ -1,0 +1,281 @@
+//out: ../../../css/pages/products/show.min.css, compress: true
+
+@import "../../variables.less";
+
+.preloader {
+    text-align: center;
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    .fa {
+        font-size: 100px;
+    }
+}
+
+.product-title {
+    h1 {
+        margin: 0px 20px;
+        color: #212121;
+        font: bold 24px Roboto;
+        text-decoration: none;
+    }
+    h3 {
+        margin: 0px 20px;
+        display: inline-block;
+        font-size: 18px;
+        margin-right: 20px;
+    }
+    span {
+        display: inline-block;
+        font-size: 18px;
+        margin-right: 20px;
+        }
+
+        span.amount-status {
+            color: #c13030;
+        }
+
+        span.amount-status.exist {
+            color: @greenActive;
+        }
+}
+
+.product-info {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+    position: relative;
+
+    .info {
+        padding: 20px;
+
+        .image {
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            min-height: 440px;
+            position: relative;
+            font-size: 0;
+
+            img.product-photo {
+                position: absolute;
+                width: 440px;
+                display: inline-block;
+                top: 0;
+                cursor: pointer;
+                left: 0;
+                z-index: 1;
+                transition: all 100ms linear, z-index 1ms linear;
+            }
+
+            span.status {
+                display: block;
+                position: absolute;
+                bottom: 10px;
+                right: 15px;
+                padding: 5px;
+                font-size: 16px;
+                font-weight: bold;
+                border: 2px solid @red;
+                border-style: dashed;
+                z-index: 2;
+                -webkit-transform: rotate(-5deg);
+            }
+
+            span.status.green {
+                color: @greenActive;
+                border-color: @greenActive;
+            }
+
+            span.status.blue {
+                color: @lightBlue;
+                border-color: @lightBlue;
+            }
+
+            span.status.wide {
+                color: @red;
+            }
+
+            .more-photos {
+                cursor: pointer;
+                display: none;
+                position: absolute;
+                width: 50px;;
+                text-align: center;
+                right: 0px;
+                top: 5px;
+                z-index: 4;
+
+                span.glyphicon {
+                    display: block;
+                    font-size: 30px;
+                }
+
+                span.photo-count {
+                    font-size: 20px;
+                }
+
+            }
+
+            .more-photos.has-photos {
+                display: block;
+            }
+
+        }
+
+
+    }
+
+}
+
+.product-actions {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    margin: 0px 20px;
+    margin-bottom: 20px;
+    font-size: 0;
+
+    .price {
+        padding-top: 0;
+        padding-bottom: 10px;
+        padding: 20px;
+        text-align: center;
+        width: 50%;
+        color: #212121;
+        font: bold 24px Roboto;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .actions {
+        padding: 20px;
+        display: inline-block;
+        padding: 25px 10px;
+        text-align: right;
+        font-size: 12px;
+        text-align: center;
+        width: 50%;
+        label.special-input {
+            display: inline-block;
+            width: 300px;
+            margin-right: 13px;
+        }
+    }
+}
+
+.small-description {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+    padding: 20px;
+
+    .card {
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+        height: 440px;
+        padding: 10px;
+    }
+}
+
+.description {
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        margin: 0px 20px;
+
+    h2 {
+        line-height: 80%;
+        margin-top: 0px;
+        margin-bottom: 5px;
+        }
+
+    .warning {
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+        margin-top: 15px;
+        padding: 10px;
+        text-align: justify;
+        font-weight: bold;
+    }
+}
+
+table.product-description-table {
+    tr {
+        td:first-child {
+            font-weight: bold;
+            text-align: right;
+            vertical-align: middle;
+            width: 300px;
+            p {
+                margin: 0;
+                padding: 0;
+                font-weight: bold;
+            }
+        }
+        td:last-child {
+            font-weight: normal;
+            text-align: left;
+            vertical-align: middle;
+            width: auto;
+        }
+        td[colspan="2"]{
+            width: auto;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+        }
+    }
+}
+
+.more-photos-content {
+    position: fixed;
+    z-index: 1000;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+
+    .more-photos-overlay {
+        position: absolute;
+        top: 0; bottom: 0;
+        left: 0; right: 0;
+        background: rgba(0, 0, 0, 0.8);
+
+        a.more-photos-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 3vh;
+            text-align: center;
+            line-height: 4vh;
+            display: block;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            color: #fff;
+            width: 5vh;
+            height: 5vh;
+            cursor: pointer;
+        }
+
+        .photos {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel {
+            height: 80%;
+            margin-top: 10vh;
+
+            .carousel-inner {
+                height: 100%;
+                .item {
+                    height: 100%;
+
+                    img {
+                        position: absolute;
+                        top: 0; right: 0;
+                        left: 0; bottom: 0;
+                        max-height: 100%;
+                        margin: auto;
+                    }
+                }
+            }
+
+        }
+
+    }
+}

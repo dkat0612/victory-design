@@ -1,0 +1,31 @@
+﻿<div class="form">
+    <div class="form-label">
+        <label class="labeled-input-label">Укажите в это поле: <span>E-mail</span></label>
+        <input type="text"
+               ng-model="$ctrl.model.email"
+               ng-focus="$ctrl.infoes.email = true"
+               ng-blur="$ctrl.infoes.email = false"
+               ng-change="$ctrl.errors.email = false"
+               ng-class="{'has-error': $ctrl.errors.email}">
+        <div class="form-info ng-hide" ng-show="$ctrl.infoes.email">
+            Мы отправим на E-mail всю информацию по заказу.<br> Заполняя E-mail, Вы сокращаете время на обработку заказа.
+        </div>
+    </div>
+    <div class="form-label" ng-show="$ctrl.selectedDelivery.id == 3 || $ctrl.selectedPerson.id==1">
+        <label class="labeled-input-label">
+            Укажите в это поле: <span>ИИН/БИН</span>
+        </label>
+        <input type="text"
+               ng-model="$ctrl.model.iin"
+               ng-focus="$ctrl.infoes.iin = true"
+               ng-blur="$ctrl.infoes.iin = false"
+               masked-input="999999999999"
+               mi-placeholder="XXXXXXXXXXXX"
+               ng-change="$ctrl.errors.iin = false"
+               ng-class="{'has-error': $ctrl.errors.iin}">
+        <div class="form-info" ng-show="$ctrl.infoes.iin">
+            Для отправки товара курьерской службой, нам необходимо получить от Вас ИИН/БИН.<br>
+        </div>
+    </div>
+    <div style="width: 100%" ng-if="$ctrl.selectedPerson.id==2 && $ctrl.selectedDelivery.id != 3" ng-include="'/public/app/products/order/templates/info-template.html'"></div>
+</div>

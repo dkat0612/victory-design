@@ -1,0 +1,13 @@
+<div class="cart" ng-show="$ctrl.getCart().length">
+    <div class="placeholder">Товаров в корзине: {{$ctrl.getCart().length}}</div>
+    <div class="actions">
+        <a ui-sref="products.cart" class="btn button-success">
+            <i class="fa fa-shopping-cart fa-fw"></i>
+            Посмотреть заказ
+        </a>
+        <button class="btn button-danger" ng-click="$ctrl.clearCart()">
+            <i class="fa fa-times fa-fw"></i>
+            Очистить корзину
+        </button>
+    </div>
+</div>

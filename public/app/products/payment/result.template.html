@@ -1,0 +1,14 @@
+﻿<div class="form" ng-if="$ctrl.status =='success'">
+    <div class="order-price">
+        Заказ № {{$ctrl.$stateParams.order}} добавлен в обработку.
+    </div>
+    <p>За статусом платежа вы можете следить на <a ui-sref="payments">этой странице</a></p>
+</div>
+<div class="form" ng-if="$ctrl.status == 'fail'">
+    <div class="order-price">
+        Оплата заказа № {{$ctrl.$stateParams.order}} завершилась неудачей.
+    </div>
+    <p>
+        С Вами в любом случае свяжутся в ближайшее время, пожалуйста сообщите об ошибке нашему менеджеру.
+    </p>
+</div>

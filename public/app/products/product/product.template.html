@@ -1,0 +1,79 @@
+<ul class="breadcrumb">
+    <li ng-repeat="item in $ctrl.getBreadcrumb()">
+        <a ui-sref="category.show.param({id:item.id, page: '1'})">{{item.title}}</a>
+    </li>
+    <li class="active">
+        {{$ctrl.product.name}}
+    </li>
+</ul>
+<div class="product-title">
+    <h1>{{$ctrl.product.name}}</h1>
+</div>
+<div class="product-info">
+    <span>Код товара: <b>{{$ctrl.product.id}}</b></span>
+    <span class="amount-status {{$ctrl.getStatus().css}}">
+        {{$ctrl.getStatus().text}}
+    </span>
+    <span>{{$ctrl.getAmountAsterix()}}</span>
+    <span>{{$ctrl.getWarranty()}}</span>
+</div>
+<div class="product-description">
+    <div class="photo" ng-click="$ctrl.showPhotos()">
+        <div class="photo-icon" ng-show="$ctrl.product.photos.length">
+            <i class="fa fa-camera"></i>
+            <span>{{$ctrl.product.photos.length + 1}}</span>
+        </div>
+        <img ng-src="{{'http://victory.kz/public/img/products/' + $ctrl.product.id + '.jpg'}}" alt="" />
+    </div>
+    <div class="small-description" ng-bind-html="$ctrl.toTrusted($ctrl.product.small_description)"></div>
+</div>
+<div class="product-actions">
+    <div class="price">
+        Цена: {{$ctrl.product.price}} тг
+    </div>
+    <div class="actions">
+        <button class="btn button-success" ng-click="$ctrl.buy()">
+            <i class="fa fa-shopping-cart fa-fw"></i> В корзину
+        </button>
+        <button class="btn button-primary" ng-click="$ctrl.foundCheaper()">
+            Нашли дешевле?
+        </button>
+    </div>
+</div>
+<div class="description">
+    <div ng-if="$ctrl.product.vendor_code.length > 0 && $ctrl.product.vendor_code != '()'">
+        Код и ссылка на сайт производителя:<br>
+        <span ng-if="!$ctrl.product.link.length">{{$ctrl.product.vendor_code}}</span>
+        <a ng-if="$ctrl.product.link.length" href="{{$ctrl.product.link}}" target="_blank">{{$ctrl.product.vendor_code}}</a>
+    </div>
+
+    <div class="section-title">
+        Название:
+    </div>
+    <div>
+        <b>{{$ctrl.product.price_name}}</b>
+    </div>
+
+    <div class="section-title">Описание:</div>
+    <!--<div class="product-description-html" ng-bind-html="$ctrl.toTrusted($ctrl.product.description)"></div>-->
+    <div class="product-description-html" ng-bind-html="$ctrl.product.description"></div>
+    <div class="additional-info">
+        Информация о товарах, их характеристиках и комплектации может содержать ошибки. Также может быть изменена производителем без предварительного уведомления. Пожалуйста, уточняйте существенные для Вас характеристики и компоненты комплектации товаров при покупке. Не соответствие товара по описанию не может быть основанием для предъявления каких-либо претензий.
+    </div>
+</div>
+<div class="photos-slider" ng-if="$ctrl.photosShowing">
+    <div class="overlay"   ng-click="$ctrl.closeSlider($event)"></div>
+    <div class="header">
+        <i class="fa fa-times fa-fw" ng-click="$ctrl.closeSlider($event)"></i>
+    </div>
+    <div class="main"  ng-click="$ctrl.closeSlider($event)">
+        <i class="fa fa-chevron-left control" ng-click="$ctrl.prevPhoto()"></i>
+        <img ng-src="{{'http://victory.kz/public/img/products/' + $ctrl.product.id + '.jpg'}}" alt="" ng-class="{active: $ctrl.activePhoto == $ctrl.product.id + '.jpg'}" ng-click="$ctrl.activePhoto = $ctrl.product.id + '.jpg'" />
+        <img ng-repeat="photo in $ctrl.product.photos" ng-src="{{'http://victory.kz/public/img/products/' + photo.photo + '.jpg'}}" alt="" ng-class="{active: $ctrl.activePhoto == photo.photo + '.jpg'}" ng-click="$ctrl.activePhoto = photo.photo + '.jpg'" />
+        <i class="fa fa-chevron-right control" ng-click="$ctrl.nextPhoto()"></i>
+    </div>
+    <div class="footer">
+        <img ng-src="{{'http://victory.kz/public/img/products/' + $ctrl.product.id + '.jpg'}}" alt="" ng-class="{active: $ctrl.activePhoto == $ctrl.product.id + '.jpg'}" ng-click="$ctrl.activePhoto = $ctrl.product.id + '.jpg'"/>
+        <img ng-repeat="photo in $ctrl.product.photos" ng-src="{{'http://victory.kz/public/img/products/' + photo.photo + '.jpg'}}" alt=""  ng-class="{active: $ctrl.activePhoto == photo.photo + '.jpg'}" ng-click="$ctrl.activePhoto = photo.photo + '.jpg'"/>
+    </div>
+</div>

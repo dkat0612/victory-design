@@ -1,0 +1,71 @@
+﻿<div class="info" ng-if="!$ctrl.model.id">
+    Контактные данные указанные Вами:<br />
+    ФИО: {{$ctrl.model.name}} <br />
+    Телефон: {{$ctrl.model.phone}} <br />
+    E-mail: {{$ctrl.model.email}} <br />
+    Город: {{$ctrl.model.town}}
+</div>
+<div class="info" ng-show="$ctrl.model.deliveryType == 'adress' || $ctrl.model.deliveryType == 'exline'"  ng-if="!$ctrl.model.id">
+    <b>Адрес:</b> {{$ctrl.model.adress}}
+</div>
+<div class="info" ng-switch="$ctrl.model.deliveryType"  ng-if="!$ctrl.model.id">
+    <b>Способ доставки:</b>
+    <span>{{$ctrl.selectedDelivery.title}}</span>
+    <span ng-if="$ctrl.selectedDelivery.id == 3">
+        Exline <span class="capitalize">{{$ctrl.model.exlineType}}</span>,
+        {{$ctrl.insured?'груз застрахован':'груз не застрахован'}},
+        доставка {{$ctrl.model.exlineIncluded?'включена':'не включена'}} в счет.
+        Стоимость доставки: {{$ctrl.model.exlinePrice}} тг.
+    </span>
+</div>
+<table class="product-table"  ng-if="!$ctrl.model.id">
+    <tr>
+        <th class="code">Код товара</th>
+        <th class="name">Наименование</th>
+        <th class="price">Цена</th>
+        <th class="amount">Кол-во</th>
+    </tr>
+    <tr ng-repeat="product in $ctrl.products track by $index">
+        <td class="code">{{product.id}}</td>
+        <td class="name">{{product.recomended_name}}</td>
+        <td class="price">{{product.price}}</td>
+        <td class="amount">{{$ctrl.cart[$index].amount}}</td>
+    </tr>
+</table>
+
+<div class="info"  ng-if="!$ctrl.model.id">
+    <br>
+    <b>Итого товара на сумму:</b> {{$ctrl.price}} тг.<br />
+    <!--
+    <b>Фактический вес: </b> {{$ctrl.weight | number: 2}} кг. (В основном для логистики Exline Standard)<br />
+    <b>Габаритный вес: </b> {{$ctrl.package_weight | number: 2}} кг. (В основном для логистики Exline Express)<br />
+    -->
+    <b>Стоимость доставки: </b> {{(($ctrl.model.exlinePrice == 0)? 'Нет данных' : $ctrl.model.exlinePrice + ' тг.')}}
+    <br>
+    <H2>Итого сумма заказа: {{$ctrl.getTotalPrice() | number: 0}} тг. </H2>
+</div>
+<div class="payment-type"  ng-if="!$ctrl.model.id">
+    <b>Выберите способ оплаты:</b>
+    <div class="checkboxes vertical">
+        <div class="fa-radio" ng-repeat="payment in $ctrl.db.payments" ng-if="$ctrl.isPaymentVisible(payment)" ng-click="$ctrl.selectedPayment = payment">
+            <i class="fa fa-fw"
+               ng-class="{'fa-circle-thin': $ctrl.selectedPayment != payment, 'fa-dot-circle-o': $ctrl.selectedPayment == payment}"></i>
+            {{payment.title}} <span ng-if="payment.commission > 0" style="padding-left:10px">({{ payment.getCommission($ctrl.price + (($ctrl.selectedDelivery && $ctrl.selectedDelivery.id == 3) ? $ctrl.model.exlinePrice : 0)) | number : 0 }} тг.)</span>
+            <i class="fa fa-fw fa-question-circle-o"
+               ng-if="payment.info"
+               style="color: #0094ff"
+               ng-mouseenter="payment.hover = true"
+               ng-mouseleave="payment.hover = false"></i>
+        </div>
+        <div class="form-info"  ng-repeat="payment in $ctrl.db.payments" ng-show="payment.hover" ng-if="payment.info" ng-bind-html="payment.info"></div>
+    </div>
+</div>
+<div style="width: 100%; text-align: center; font-size: 40px; font-weight: bold; padding-bottom: 30px" ng-if="$ctrl.buying">
+    <i class="fa fa-spinner fa-spin"></i> Оформляем заказ
+</div>
+<div class="order-id" ng-if="$ctrl.model.id">
+    <b>Ваш номер заказа:</b> {{$ctrl.model.id}} В обработке<br>
+    Интернет-заказы обрабатываются в рабочее время с <b>9:00 до 17:00</b><br>
+    В ближайшее время с вами свяжутся наши менеджера<br>
+    <a href="/" class="btn btn-success">Продолжить</a>
+</div>

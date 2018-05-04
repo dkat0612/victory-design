@@ -1,0 +1,44 @@
+//out: ../../../css/pages/all/cart.min.css, compress: true
+
+.cart {
+
+    height: 65px;
+
+    .shopping-cart {
+        text-align: center;
+
+        .info {
+            display: inline-block;
+            vertical-align: top;
+            text-align: right;
+            padding: 10px;
+            line-height: 40px;
+            font-size: 20px;
+
+            span {
+                font-weight: bold;
+            }
+
+        }
+
+        .actions {
+            display: inline-block;
+            vertical-align: top;
+            text-align: left;
+            padding: 10px;
+        }
+    }
+
+    .shopping-cart.affix {
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        margin: auto;
+        z-index: 999;
+        width: 998px;
+        background: #f7f7f7;
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+}
+

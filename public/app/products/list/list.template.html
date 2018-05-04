@@ -1,0 +1,34 @@
+<!--<link rel="stylesheet" href="/public/css/pages/products/index.min.css">-->
+<ul class="breadcrumb">
+    <li ng-repeat="item in $ctrl.getBreadcrumb() track by $index" ng-class="{active: $ctrl.getBreadcrumb().length - 1 == $index}">
+        <a ui-sref="category.show.param({id:item.id, page: '1'})" ng-if="$ctrl.getBreadcrumb().length - 1 != $index">{{item.title}}</a>
+        <span ng-if="$ctrl.getBreadcrumb().length - 1 == $index">{{item.title}}</span>
+    </li>
+</ul>
+<div class="list-content">
+    <div class="categories">
+        <vc-category-list-item ng-repeat="category in $ctrl.categories" category="category"></vc-category-list-item>
+    </div>
+    <div class="products">
+        <div class="search">
+            <div class="form-group has-feedback search-input">
+                <input type="text" class="form-control" ng-model="$ctrl.sortParams.keywords" ng-keyup="$ctrl.keyup($event)" ng-change="$ctrl.keywordsChanged()">
+                <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+            </div>
+            <div class="search-params">
+                <span>
+                    <input type="checkbox" id="to-order" ng-model="$ctrl.sortParams.toOrder" checked="checked" class="chbox" ng-change="$ctrl.load()" ng-true-value="1" ng-false-value="0">
+                    <label for="to-order" class="chbox">Резерв</label>
+                </span>
+                <span>Сортировать по:</span>
+                <a class="sort price-sort active" id="price-sort" ng-click="$ctrl.sort('price')">
+                    цене <i class="fa fa-sort-numeric-{{$ctrl.sortParams.type}}"></i>
+                </a>
+                <span>Показывать на странице: </span>
+                <select id="on-page" class="form-control" ng-change="$ctrl.productView.load()" ng-model="$ctrl.sortParams.limit" ng-options="item for item in $ctrl.limits"></select>
+            </div>
+        </div>
+        <div ui-view=""></div>
+        <vc-pagination count="$ctrl.pages" on-page-change="$ctrl.pageChanged($page)" active-page="$ctrl.sortParams.page"></vc-pagination>
+    </div>
+</div>

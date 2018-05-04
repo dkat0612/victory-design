@@ -1,0 +1,32 @@
+<div class="product" ng-repeat="product in $ctrl.products">
+    <div class="left-side">
+        <a ui-sref="products.show({id: product.id})">
+            <img ng-src="{{'http://victory.kz/public/img/products/' + product.id + '.jpg'}}" alt="" />
+        </a>
+        <div class="price">{{product.price}} тг</div>
+</div>
+    <div class="right-side">
+        <div class="title">
+            <h4><a ui-sref="products.show({id: product.id})">{{product.name}}</a></h4>
+        </div>
+        <div class="info">
+            <div class="product-code">
+                Код товара: <b>{{product.id}}</b>
+            </div>
+            <div class="amount-status {{$ctrl.getStatus(product).css}}">
+                {{$ctrl.getStatus(product).text}}
+            </div>
+            <div class="warranty">{{$ctrl.getWarranty(product)}}</div>
+        </div>
+        <div class="description" ng-bind-html="product.description"></div>
+        <div class="actions">
+            <button class="btn button-success" ng-show="$ctrl.showProduct(product)" ng-click="$ctrl.buy(product)">
+                <i class="fa fa-shopping-cart"></i>
+                В корзину
+            </button>
+            <a ui-sref="products.show({id: product.id})" class="btn button-primary">
+                Подробней
+            </a>
+        </div>
+    </div>
+</div>

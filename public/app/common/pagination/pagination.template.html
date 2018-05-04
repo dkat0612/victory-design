@@ -1,0 +1,6 @@
+﻿<ul>
+    <li ng-repeat="page in $ctrl.pages()" ng-class="{active: $ctrl.activePage == page}">
+        <!--<a ui-sref="category.show.param({page: page})">{{page}}</a>-->
+        <a href ng-click="$ctrl.choosePage(page)">{{page}}</a>
+    </li>
+</ul>

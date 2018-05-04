@@ -1,0 +1,113 @@
+﻿<div class="form">
+    <div class="form-label">
+        <div class="checkboxes" style="justify-content: space-between">
+            <div class="fa-radio" ng-click="$ctrl.selectedPerson = person" ng-repeat="person in $ctrl.db.persons | orderBy : '-id'">
+                <i class="fa fa-fw" ng-class="{'fa-circle-thin': $ctrl.selectedPerson != person, 'fa-dot-circle-o': $ctrl.selectedPerson == person}"></i>                {{person.title}}
+            </div>
+    </div>
+    <div class="form-label" style="padding-top: 25px; font-weight: bold;">Для выставления счетов с НДС, просьба писать с реквизитами и заказом напрямую на sales@victory.kz. Сайт не
+            предусмотрен для Юридических лиц с НДС</div>
+    </div>
+    <div class="form-label town-input">
+        <label class="labeled-input-label">
+            Укажите в это поле: <span>Город -> </span><span>Самовывоз доступен только для города Алматы</span>
+        </label>
+        <input type="text" ng-model="$ctrl.model.town" readonly ng-click="!$ctrl.buying && $ctrl.selectTown()" ng-change="$ctrl.errors.tonw = false"
+            ng-class="{'has-error': $ctrl.errors.town}">
+        <div class="select-town-overlay" ng-show="$ctrl.selectingTown" ng-click="!$ctrl.buying && $ctrl.closeSelection()"></div>
+        <ul class="town-select" ng-show="$ctrl.selectingTown">
+            <li class="search-input">
+                <i class="fa fa-search fa-fw"></i>
+                <input type="text" value="" ng-model="$ctrl.destinationTown" focus-me="$ctrl.focusTownInput" ng-change="$ctrl.getDestinationTown()"
+                    placeholder="Введите город в который нужно сделать доставку">
+                <i class="fa fa-times fa-fw" ng-click="$ctrl.closeSelection()"></i>
+            </li>
+            <li ng-show="($ctrl.destinationRegions == 0) && $ctrl.destinationTown.length > 3" class="search-input">
+                <span>Ничего не найдено, проверте правильность введенных данных</span>
+            </li>
+            <li ng-repeat="item in $ctrl.destinationRegions" ng-click="$ctrl.selectTown(item)">
+                <span>{{item.title}}, {{item.cached_path}}</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-label" ng-if="$ctrl.selectedTown">
+        <label class="labeled-input-label">Способ доставки</label>
+        <div class="checkboxes">
+            <div class="fa-radio" ng-click="$ctrl.selectedDelivery = delivery" ng-repeat="delivery in $ctrl.db.deliveries" ng-if="delivery.isShown($ctrl.selectedTown.id)">
+                <i class="fa fa-fw fa-dot-circle-o" ng-class="{'fa-circle-thin': $ctrl.selectedDelivery != delivery, 'fa-dot-circle-o': $ctrl.selectedDelivery == delivery}"></i>                {{delivery.title}}
+                <!--<i class="fa fa-fw fa-question-circle-o"
+                    ng-if="delivery.info"
+                    style="color: #0094ff"
+                    ng-mouseenter="delivery.infoShown = true"
+                    ng-mouseleave="delivery.infoShown = false"></i>-->
+            </div>
+        </div>
+    </div>
+    <div class="form-label" ng-repeat="delivery in $ctrl.db.deliveries" ng-if="delivery.info && delivery == $ctrl.selectedDelivery"
+        ng-bind-html="delivery.info"></div>
+
+    <div class="form-label" ng-show="$ctrl.selectedTown.id != 4 && $ctrl.selectedTown">
+        <div class="awesome-checkbox" ng-click="$ctrl.toggleVictoryCommision()">
+            <i style="font-size: 20px; color: #0094ff" class="fa fa-fw" ng-class="{'fa-check-square-o': $ctrl.model.exlineIncluded, 'fa-square-o': !$ctrl.model.exlineIncluded}"></i>            Включить цену доставки в счет
+            <i class="fa fa-fw fa-question-circle-o" style="color: #0094ff" ng-mouseenter="$ctrl.infoes.comission = true" ng-mouseleave="$ctrl.infoes.comission = false"
+                aria-hidden="true"></i>
+        </div>
+        <div class="form-info ng-hide" ng-show="$ctrl.infoes.comission">
+            Услуги курьерской службы оплачиваются отдельно по: Безналичному расчёту, Visa, Mastercard, Qiwi, Касса24.<br><br>            При выставлении услуги доставки в счёте от Нас, будет взиматься комиссия за банковские переводы в размере 150
+            тг.<br><br> Оплачивая услугу курьерской службы по счёту, Вы экономите своё время и время доставки до Вашего дома,
+            благодаря заранее произведённой оплате.<br><br> Вы вправе отказаться от выставления в счёте услуги доставки,
+            и произвести оплату непосредственно курьерской службе.<br>
+        </div>
+        <div class="awesome-checkbox" ng-click="$ctrl.toggleInsurance()">
+            <i style="font-size: 20px; color: #0094ff" class="fa fa-fw" ng-class="{'fa-check-square-o': $ctrl.insured, 'fa-square-o': !$ctrl.insured}"></i>            Застраховать груз
+            <i class="fa fa-fw fa-question-circle-o" style="color: #0094ff" ng-mouseenter="$ctrl.infoes.insurance = true" ng-mouseleave="$ctrl.infoes.insurance = false"
+                aria-hidden="true"></i>
+        </div>
+        <div class="form-info" ng-show="$ctrl.infoes.insurance">
+            Рекомендуемая страховая сумма является реальной стоимости товара и не может её превышать. Комиссия состоявляет 0.8% от общей
+            стоимости товара.
+        </div>
+    </div>
+    <div class="pricing-tables" ng-if="$ctrl.selectedTown.id != 4 && $ctrl.selectedTown">
+        <div class="preloader" ng-show="$ctrl.gettingPrices">
+            <i class="fa fa-spinner fa-spin fa-fw"></i>
+        </div>
+        <div class="pricing-table" ng-show="$ctrl.deliveries.standard" ng-class="{selected: $ctrl.model.exlineType=='standard'}">
+            <div class="title">Standard</div>
+            <div class="price">{{$ctrl.deliveries.standard.price + $ctrl.deliveries.standard.fuel_surplus + $ctrl.getInsurance() + $ctrl.getVictoryComission()}}</div>
+            <div class="time">
+                <h4>Примерное время доставки:</h4>
+                <span>{{$ctrl.deliveries.standard.human_range}}</span>
+            </div>
+            <!--
+            <div class="time">
+                <h4>Фактический вес: {{$ctrl.weight | number : 2}} кг</h4>
+            </div>
+            -->
+            <div class="button">
+                <button class="btn btn-success" ng-disabled="$ctrl.model.exlineType=='standard'" ng-click="$ctrl.selectExline('standard')">
+                    Выбрать
+                </button>
+            </div>
+        </div>
+        <div class="pricing-table" ng-show="$ctrl.deliveries.express" ng-class="{selected: $ctrl.model.exlineType=='express'}">
+            <div class="title">Express</div>
+            <div class="price">{{$ctrl.deliveries.express.price + $ctrl.deliveries.express.fuel_surplus + $ctrl.getInsurance() + $ctrl.getVictoryComission()}}</div>
+            <div class="time">
+                <h4>Примерное время доставки:</h4>
+                <span>{{$ctrl.deliveries.express.human_range}}</span>
+            </div>
+            <!--
+            <div class="time">
+                <h4>Габаритный вес: {{$ctrl.package_weight | number : 2}} кг</h4>
+            </div>
+            -->
+            <div class="button">
+                <button class="btn btn-success" ng-disabled="$ctrl.model.exlineType=='express'" ng-click="$ctrl.selectExline('express')">
+                    Выбрать
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

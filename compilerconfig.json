@@ -1,0 +1,12 @@
+[
+  {
+    "outputFile": "public/app/app.styles.css",
+    "inputFile": "public/app/app.styles.less",
+    "sourceMap": true
+  },
+  {
+    "outputFile": "public/css/style.css",
+    "inputFile": "public/less/style.less",
+    "sourceMap": true
+  }
+]

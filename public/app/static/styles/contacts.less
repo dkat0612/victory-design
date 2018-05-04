@@ -1,0 +1,46 @@
+vc-static-pages {
+
+    .main-content {
+        display: flex;
+        align-items: stretch;
+        flex-direction: column;
+
+        &.horizontal {
+            flex-direction: row;
+        }
+
+    }
+
+    .card {
+        box-shadow: 0 0 5px 2px rgba(0, 0, 0, .4);
+
+        .card-content {
+            padding: 20px;
+        }
+
+        &.map {
+            flex-grow: 1;
+            height: 450px;
+            margin-right: 20px;
+        }
+    }
+
+    .contacts {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+
+        .info {
+            .card;
+            padding: 20px;
+            margin-bottom: 20px;
+
+            h1 {
+                margin: 0;
+                margin-bottom: 5px;
+                font-size: 18px;
+                border-bottom: 1px solid #d1d1d1;
+            }
+        }
+    }
+}

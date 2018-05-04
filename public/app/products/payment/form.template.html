@@ -1,0 +1,75 @@
+<div class="loading" ng-show="$ctrl.loading">
+    <h4>Заказ проверяется, пожалуйста подождите</h4>
+</div>
+<!--https://testpay.kkb.kz/jsp/process/logon.jsp-->
+<div class="form" ng-hide="$ctrl.loading || $ctrl.myOrder">
+    <div class="order-price" style="font-weight: normal">
+        Мы не уверены что этот заказ был сделан вами, пожалуйста введите номер телефона для подтверждения
+    </div>
+    <div class="form-label">
+        <label class="labeled-input-label">Укажите в это поле: <span>Телефон</span></label>
+        <input type="text" ng-model="$ctrl.phone" masked-input="+7(999)999-99-99" mi-placeholder="+7(XXX)XXX-XX-XX">
+    </div>
+    <div class="actions">
+        <button class="btn button-success" ng-click="$ctrl.confirm()">Подтвердить</button>
+    </div>
+</div>
+<form action="https://epay.kkb.kz/jsp/process/logon.jsp" method="post" class="form" ng-hide="$ctrl.loading || !$ctrl.myOrder">
+    <div class="order">
+        <table class="order-table" ng-show="$ctrl.myOrder">
+            <thead>
+                <tr>
+                    <th>Код товара</th>
+                    <th>Наименование продукта</th>
+                    <th>Цена</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product in $ctrl.order.cart">
+                    <td>
+                        <a ui-sref="products.show({id: product.product.id})" target="_blank">{{product.product.id}}</a>
+                    </td>
+                    <td>
+                        {{product.product.name}}
+                    </td>
+                    <td>
+                        {{product.product.price + ((product.amount > 1)? 'x' + product.amount: '')}} тг
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="order-price">
+        Итого сумма к оплате: {{$ctrl.price}} тг
+    </div>
+    <div class="form-label" ng-hide="$ctrl.order.payed == 2 || $ctrl.order.payed == 1">
+        <label class="labeled-input-label">Укажите в это поле: <span>E-mail</span></label>
+        <input type="text" 
+               ng-model="$ctrl.model.email" 
+               ng-focus="$ctrl.infoes.email = true" 
+               name="email" ng-blur="$ctrl.infoes.email = false" 
+               ng-change="$ctrl.errors.email = false" 
+               ng-class="{'has-error': $ctrl.errors.email}" 
+               class="ng-pristine ng-untouched ng-valid ng-empty">
+        <div class="form-info ng-hide" ng-show="$ctrl.infoes.email">
+            Это обязательное поле для совершения оплаты в системе QAZKOM
+        </div>
+    </div>
+    <div class="actions" ng-hide="$ctrl.order.payed == 2 || $ctrl.order.payed == 1">
+        <button type="submit"  class="btn button-success">Перейти к оплате</button>
+    </div>
+    <div class="actions" ng-show="$ctrl.order.payed == 2">
+        <span>Заказ уже оплачен</span>
+    </div>
+    <div class="actions" ng-show="$ctrl.order.payed == 1">
+        <span>Заказ ожидает подтверждения оплаты</span>
+    </div>
+
+    <input type="hidden" name="template" value="default.xsl" />
+    <input type="hidden" name="PostLink"  ng-value="$ctrl.model.PostLink"/>
+    <input type="hidden" name="FailurePostLink" ng-value="$ctrl.model.FailurePostLink" />
+    <input type="hidden" name="BackLink" ng-value="$ctrl.model.BackLink"/>
+    <input type="hidden" name="FailureBackLink" ng-value="$ctrl.model.FailureBackLink"/>
+    <input type="hidden" name="Language" value="rus" />
+    <input type="hidden" name="Signed_Order_B64" ng-value="$ctrl.model.Signed_Order_B64" />
+</form>

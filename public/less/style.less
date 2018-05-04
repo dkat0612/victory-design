@@ -1,0 +1,459 @@
+// out: ../css/style.min.css, compress: true
+
+@import "variables.less";
+@import "animations.less";
+
+.help-text {
+    font-family: @mainFont;
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: rgba(0, 0, 0, 0.16);
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.81);
+	padding-top: 10px;
+}
+
+::-webkit-scrollbar-button {
+	background: transparent;
+	height: 1px;
+	height: 1px;
+}
+
+@font-face {
+	font-family: MagistralC;
+	src: url('/public/fonts/Magistral.otf') format('opentype');
+}
+
+@font-face {
+	font-family: Roboto;
+	src: url('/public/fonts/Roboto-Regular.ttf') format('opentype');
+}
+
+@font-face {
+	font-family: Roboto;
+	src: url('/public/fonts/Roboto-Bold.ttf') format('opentype');
+    font-weight: bold;
+}
+
+@font-face {
+	font-family: DINPro;
+	src: url('/public/fonts/DINPro.ttf');
+}
+
+* {
+	transition: all 200ms linear;
+	-webkit-transition: all 200ms cubic-bezier(0, 0, 0, 1);
+	-moz-transition: all 200ms cubic-bezier(0, 0, 0, 1);
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: inherit;
+}
+
+body, html {
+    background: #e0e0e0;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    font-size: 16px;
+}
+
+body {
+    overflow: scroll;
+}
+
+div.container {
+    width: 1000px;
+    background: #fafafa;
+    min-height: 100%;
+    padding: 0px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+}
+
+header {
+    background: #f7f7f7;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    padding: 1px;
+    
+    .logo {
+        padding-left: 10px;
+        padding-top: 10px;
+        margin-bottom: 28px;
+        position: relative;
+        
+        .image {
+            display: inline-block;
+            vertical-align: bottom;
+            width: 140px;
+            height: 130px;
+            
+            img {
+                width: 150px;
+            }
+        }
+        
+        .logo-text {
+            display: inline-block;
+            margin-bottom: 12px;
+            margin-left: 30px;
+            color: #212121;
+            .style-1{
+                font: 700 54px Roboto Bold;
+                line-height: 0px;
+                padding: 0px;
+                margin: 0px;
+            }
+            .style-2{
+                margin-left: 40px;
+                font: 700 30px Roboto;
+                line-height: 30px;
+                //padding: 0px;
+            }
+        }
+        .site-time {
+            display: inline-block;
+            margin-bottom: -14px;
+            vertical-align: bottom;
+            margin-left: 30px;
+            color: #212121;
+            .on-line {
+            color: #61cf80;
+            font-weight: bold;
+            }
+            .off-line {
+            color: #c13030;
+            font-weight: bold;
+            }
+        }
+    }
+    div.menu {
+        text-align: center;
+        ul.main-menu {
+            list-style: none;
+            padding: 0;
+            font-size: 0px;
+
+            li {
+                display: inline-block;
+                vertical-align: top;
+                a { 
+                    color: #212121;
+                    font: bold 24px Roboto;
+                    text-decoration: none;
+                    padding: 10px;
+                    border-left: 1px solid #e0e0e0;
+                }
+                
+                a:hover {
+                    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+                }
+                
+            }
+            li.active {
+                a {
+                    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+                }
+                a:hover {
+                    box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
+                }
+            }
+            li:last-child {
+                a {
+                    border-right: 1px solid #e0e0e0;
+                }
+            }
+            
+            
+        }
+    }
+    
+    
+}
+footer {
+    background: #f7f7f7;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    vertical-align: top;
+    padding: 0px;
+
+    .footer-section {
+        ul.footer-menu {
+            list-style: none;
+            padding-left: 10px;
+            padding-top: 5px;
+            li {
+                padding: 2px;
+                display: block;
+                vertical-align: top;
+                a {
+                    color: #212121;
+                    font: 18px Roboto;
+                    text-decoration: none;
+                    border-left: 1px solid #e0e0e0;
+                    border-top: 1px solid #e0e0e0;
+                }
+
+                a:hover {
+                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+                }
+
+            }
+        }
+        width: 25%;
+        display: inline-block;
+        vertical-align: top;
+        padding: 10px;
+    }
+
+    .copyright_block {
+        display: inline-block;
+        padding: 5px;
+
+    .copyright {
+        position: relative;
+        display: inline-block;
+        margin-left: 400px;
+        }
+            .zero {
+        position: relative;
+        display: inline-block;
+        opacity: 0;
+        margin-left: 125px;
+    }
+    }
+
+}
+
+.slider-banner {
+    padding: 0px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    
+    .carousel {
+        
+        ol.carousel-indicators {
+            left: auto;
+            right: 20px;
+            margin: 0px 0px;
+            text-align: right;
+            
+            li {
+                width: 20px;
+                height: 20px;
+                border: 1px solid #212121;
+            }
+            
+            li.active {
+                background: #212121;
+                width: 20px;
+                height: 20px;
+                border: 1px solid #212121;
+                margin: 1px;
+            }
+            
+        }
+        
+        .carousel-inner {
+            height: 300px;
+            background: #e0e0e0;
+            position: relative;
+            
+            div.slider-image {
+                display: inline-block;
+                vertical-align: top;
+                padding: 25px;
+
+                width: 300px;
+                
+                img {
+                    width: 250px;
+                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+                }
+            }
+
+            .carousel-caption-no-image {
+                display: inline-block;
+                vertical-align: top;
+                position: relative;
+                left: 0px;
+                right: 0px;
+                width: 960px;
+                text-align: left;
+                padding-left: 15px;
+                color: #212121;
+                font: bold 16px Roboto;
+                text-shadow: 0px 0px 0px #000;
+
+                h3 {
+                    color: #212121;
+                    font: 28px Roboto;
+                }
+
+                ul{
+                    list-style: none inside;
+                    padding: 0px;
+
+                    li {
+                        padding-left: 20px;
+                        padding-top: 5px;
+                        position: relative;
+                    }
+
+                    li:before {
+                        content: "\2043";
+                        position: absolute;
+                        left: 0px;
+                    }
+
+                    li.button {
+                        padding-top: 20px;
+                        padding-left: 0px;
+                    }
+
+                    li.button:before {
+                        content: '';
+                    }
+
+                }
+
+            }
+            
+            .carousel-caption {
+                display: inline-block;
+                vertical-align: top;
+                position: relative;
+                left: 0px;
+                right: 0px;
+                width: 620px;
+                text-align: left;
+                padding-left: 15px;
+                color: #212121;
+                font: bold 16px Roboto;
+                text-shadow: 0px 0px 0px #000;
+                
+                h3 {
+                    color: #212121;
+                    font: 28px Roboto;
+                }
+                
+                ul{
+                    list-style: none inside;
+                    padding: 0px;
+                    
+                    li {
+                        padding-left: 20px;
+                        padding-top: 5px;
+                        position: relative;
+                    }
+                    
+                    li:before {
+                        content: "\2043";
+                        position: absolute;
+                        left: 0px;
+                    }
+                    
+                    li.button {
+                        padding-top: 20px;
+                        padding-left: 0px;
+                    }
+                    
+                    li.button:before {
+                        content: '';
+                    }
+                    
+                }
+                
+            }
+        }
+    }
+    
+}
+
+.main-content {
+    padding: 20px 20px;
+    position: relative;
+}
+
+#content {
+    min-height: 1000px;
+    position: relative;
+    z-index: 500;
+}
+
+div.centered {
+    display: table;
+    height: 100%;
+
+    span {
+        display: table-cell !important;
+        vertical-align: middle;
+    }
+}
+
+.panel.panel-menu {
+    margin: 0px;
+    border-radius: 0px;
+    border: none;
+    .panel-heading {
+        padding: 0px;
+        border-radius: 0px;
+    }
+
+    .panel-body {
+        padding: 0px;
+    }
+}
+
+.panel-group {
+    margin: 0px;
+
+    .panel+.panel {
+        margin-top: 0px;
+    }
+
+}
+
+#content-preloader {
+    font-size: 100px;
+    text-align: center;
+}
+
+a.pricelist-link {
+    color: @fontColor;
+    position: absolute;
+    top: 10px;
+    width: 200px;
+    right: 10px;
+    padding: 5px;1
+    text-decoration: none;
+    display: block;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+a.VC-link {
+    color: @fontColor;
+    position: absolute;
+    top: 50px;
+    width: 200px;
+    right: 10px;
+    padding: 5px;1
+    text-decoration: none;
+    display: block;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.site-status {
+    color: @fontColor;
+    position: absolute;
+    top: 70px;
+    right: 100px;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    box-shadow: 0 0 10px rgba(180, 0, 0, 0.84);
+}
